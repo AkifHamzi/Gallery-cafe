@@ -1,0 +1,137 @@
+@import url("components.css");
+
+/* ----Reservation-----*/
+
+.reservation {
+  max-width: 50rem;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: var(--secondary);
+  border-radius: 2rem;
+  box-shadow: var(--box-shadow);
+  border: var(--border);
+}
+
+.reservation h3 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--text);
+}
+
+.reservation form {
+  display: flex;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  width: min(800px, 90%);
+}
+
+.reservation form .box {
+  width: 100%;
+  padding: 1.2rem 1.4rem;
+  font-size: 1.8rem;
+  color: var(--text);
+  border: var(--border);
+  border-radius: 0.8rem;
+  background-color: var(--secondary);
+}
+
+.reservation form textarea {
+  width: 100%;
+  padding: 1.2rem 1.4rem;
+  font-size: 1.8rem;
+  color: var(--black);
+  border: var(--border);
+  border-radius: 0.8rem;
+  background-color: var(--light-bg);
+  resize: vertical;
+}
+
+.reservation form select {
+  width: 100%;
+  padding: 1.2rem 1.4rem;
+  font-size: 1.8rem;
+  color: var(--black);
+  border: var(--border);
+  border-radius: 0.8rem;
+  background-color: var(--light-bg);
+}
+
+.reservation form .btn {
+  width: 100%;
+  padding: 1.3rem 3rem;
+  font-size: 2rem;
+  color: var(--text-white);
+  background-color: var(--primary);
+  border: none;
+  cursor: pointer;
+  border-radius: 0.8rem;
+  transition: background-color 0.3s ease;
+}
+
+.reservation form .secondary-btn {
+  width: 100%;
+  padding: 1.3rem 3rem;
+  font-size: 2rem;
+  color: var(--primary);
+  border: none;
+  cursor: pointer;
+  border-radius: 0.8rem;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  text-align: center;
+}
+
+.reservation form .btn:hover {
+  color: var(--text);
+  transition: all 0.3s ease;
+  background-color: var(--secondary);
+}
+
+.reservation form .secondary-btn:hover {
+  color: var(--text);
+  transition: all 0.3s ease;
+}
+
+/* Responsive  */
+@media (max-width: 768px) {
+  .reservation {
+    padding: 1.5rem;
+  }
+
+  .reservation form .box {
+    width: 100%;
+  }
+
+  .reservation form textarea {
+    width: 100%;
+  }
+
+  .reservation form select {
+    width: 100%;
+  }
+}
+
+@media (max-width: 450px) {
+  .reservation {
+    padding: 1rem;
+  }
+
+  .reservation form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .reservation form .box {
+    margin-bottom: 1rem;
+  }
+
+  .reservation form textarea {
+    margin-bottom: 1rem;
+  }
+
+  .reservation form select {
+    margin-bottom: 1rem;
+  }
+}

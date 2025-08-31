@@ -1,0 +1,119 @@
+<?php
+
+@include 'config.php';
+
+session_start();
+
+$staff_id = $_SESSION['staff_id'] ?? null;
+$admin_id = $_SESSION['admin_id'] ?? null;
+
+if (!isset($staff_id) && !isset($admin_id)) {
+   header('location:login.php');
+   exit;
+}
+?>
+
+<?php
+
+$select_car_reservations = $conn->prepare("SELECT * FROM `car_reservations` WHERE reservation_status = 'pending'");
+$select_car_reservations->execute();
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Staff Pending Car Reservations</title>
+
+   <!-- Bootstrap CSS -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+   <!-- FAVICON -->
+   <link rel="icon" type="image/png" href="images/logo-big.png" />
+
+   <!-- Font Awesome CSS -->
+   <link rel="stylesheet" href="css/all.min.css" />
+
+   <!-- Custom CSS -->
+   <link rel="stylesheet" href="css/admin_style.css">
+   <!-- CSS -->
+   <link rel="preconnect" href="https://fonts.googleapis.com" />
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+
+
+</head>
+
+<body>
+
+   <?php include 'staff_header.php'; ?>
+
+   <a href="staff_dashboard.php" class="option-btn">go back</a>
+
+   <section class="placed-orders">
+
+      <h1 class="title">Pending Car Reservations</h1>
+
+      <div class="box-container">
+
+         <?php
+
+         if ($select_car_reservations->rowCount() > 0) {
+            while ($fetch_reservations = $select_car_reservations->fetch(PDO::FETCH_ASSOC)) {
+         ?>
+               <div class="box">
+
+                  <p> Customer Name: <span><?= ($fetch_reservations['name']); ?></span> </p>
+                  <p> Contact Number: <span><?= ($fetch_reservations['phone']); ?></span> </p>
+                  <p> Vehicle Number: <span><?= ($fetch_reservations['vehicle_no']); ?></span> </p>
+                  <p> Vehicle Type: <span><?= ($fetch_reservations['vehicle_type']); ?></span> </p>
+                  <p> Check-in Time: <span><?= ($fetch_reservations['check_in_time']); ?></span> </p>
+                  <p> Check-out Time: <span><?= ($fetch_reservations['check_out_time']); ?></span> </p>
+                  <p> Entry Date: <span><?= ($fetch_reservations['entry_date']); ?></span> </p>
+                  <p> Exit Date: <span><?= ($fetch_reservations['exit_date']); ?></span> </p>
+                  <p> Reservation Status: <span><?= ($fetch_reservations['reservation_status']); ?></span> </p>
+
+
+
+                  <form action="" method="POST">
+                     <input type="hidden" name="reservation_id" value="<?= $fetch_reservations['car_reservation_id']; ?>">
+                     <select name="update_status" class="drop-down">
+                        <option value="pending" <?= ($fetch_reservations['reservation_status'] == 'pending') ? 'selected' : ''; ?>>Pending</option>
+                        <option value="confirmed" <?= ($fetch_reservations['reservation_status'] == 'confirmed') ? 'selected' : ''; ?>>Confirmed</option>
+                        <option value="cancelled" <?= ($fetch_reservations['reservation_status'] == 'cancelled') ? 'selected' : ''; ?>>Cancelled</option>
+                     </select>
+                     <input type="submit" name="update_reservation" class="option-btn" value="Update">
+                     <a href="staff_dashboard.php" class="btn btn-primary mt-3">Go Back</a>
+                  </form>
+               </div>
+         <?php
+            }
+         } else {
+            echo '<p class="empty">No pending car reservations found!</p>';
+         }
+         ?>
+
+      </div>
+
+   </section>
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="js/script.js"></script>
+
+</body>
+
+</html>
+
+<?php
+
+if (isset($_POST['update_reservation'])) {
+   $reservation_id = $_POST['reservation_id'];
+   $update_status = $_POST['update_status'];
+   $update_reservation = $conn->prepare("UPDATE `car_reservations` SET reservation_status = ? WHERE car_reservation_id = ?");
+   $update_reservation->execute([$update_status, $reservation_id]);
+   header('Location: staff_pending_car_reservations.php');
+   exit;
+}
+?>

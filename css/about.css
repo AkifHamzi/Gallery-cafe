@@ -1,0 +1,176 @@
+/* General body styling */
+body {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* background-color: #ac996b; */
+}
+
+/* Styling for the header section */
+section#header {
+  padding: 100px 0;
+  min-height: 60vh;
+  width: 100%;
+  background-image: url(../images/spices.jpg);
+  background-size: cover;
+  position: relative;
+}
+
+/* Styling for the about section */
+.about-1 {
+  text-align: center;
+  margin-bottom: 50px;
+  color: #fbfbfe;
+}
+
+.about-1 h1 {
+  font-size: 35px;
+  margin-bottom: 20px;
+}
+
+.about-1 p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #fbfbfe;
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.content-box-lg {
+  padding: 40px 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-around; 
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+
+
+
+.col-md-4 {
+  flex: 0 0 30%;
+  max-width: 30%;
+  margin-bottom: 30px;
+  box-sizing: border-box;
+  padding: 0 15px;
+}
+
+.about-item {
+  background: #fff;
+  padding: 30px;
+  border-radius: 0.8rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+
+}
+
+.about-item:hover {
+  background: #80714bfd;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.about-item:hover i {
+  font-size: 50px;
+  color: #c29c5e;
+  margin-bottom: 20px;
+  transition: all 0.5s ease;
+}
+
+.about-item h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: inherit;
+  transition: all 0.5s ease;
+}
+
+.about-item hr {
+  width: 50px;
+  border: 1px solid #f39c12;
+  margin: 10px auto;
+  transition: all 0.5s ease;
+}
+
+.about-item p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  transition: all 0.5s ease;
+}
+
+.about-item:hover i,
+.about-item:hover h3,
+.about-item:hover p,
+.about-item:hover hr {
+  color: #fff;
+  border-color: #fff;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 992px) {
+  #about-2 .col-md-4 {
+    margin-bottom: 30px;
+  }
+
+  .about-1 p {
+    width: 90%;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  #about-2 .row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #about-2 .col-md-4 {
+    width: 100%;
+    max-width: 90%;
+  }
+
+  .about-1 {
+    text-align: left;
+    padding: 0 20px;
+  }
+
+  .about-1 h1,
+  .about-1 h2 {
+    font-size: 28px;
+  }
+
+  .about-1 p {
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-1 h1,
+  .about-1 h2 {
+    font-size: 24px;
+  }
+
+  .about-1 p {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+}
